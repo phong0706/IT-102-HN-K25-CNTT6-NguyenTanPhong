@@ -302,19 +302,45 @@ void getPasswordHidden(char* password) {
 }
 
 // Kiem tra quyen Admin (User: admin, Pass: admin)
+// [DA FIX] Chuan hoa logic check khoang trang va enter
 int checkAdminPermission() {
     char username[50];
     char password[50];
 
     printf("\n--- YEU CAU QUYEN QUAN TRI (ADMIN) ---\n");
-    printf("Tai khoan: ");
-    fgets(username, 50, stdin);
-    removeNewline(username);
 
-    printf("Mat khau:  ");
-    getPasswordHidden(password);
-    printf("\n");
+    // 1. Nhap tai khoan (Su dung getValidString de chan khoang trang va enter)
+    getValidString("Tai khoan: ", username);
 
+    // 2. Nhap mat khau (Co vong lap kiem tra)
+    do {
+        printf("Mat khau:  ");
+        getPasswordHidden(password);
+        printf("\n");
+
+        // Kiem tra rong (Enter)
+        if (strlen(password) == 0) {
+            printf("\t-> ERROR: Mat khau khong duoc de trong! Nhap lai.\n");
+            continue;
+        }
+
+        // Kiem tra toan khoang trang (Space)
+        int hasContent = 0;
+        for (int i = 0; i < strlen(password); i++) {
+            if (password[i] != ' ') {
+                hasContent = 1;
+                break;
+            }
+        }
+
+        if (hasContent == 0) {
+            printf("\t-> ERROR: Mat khau khong duoc chua toan khoang trang!\n");
+        } else {
+            break; // Mat khau hop le ve mat dinh dang
+        }
+    } while (1);
+
+    // So sanh tai khoan mat khau
     if (strcmp(username, "admin") == 0 && strcmp(password, "admin") == 0) {
         printf("-> Dang nhap thanh cong! Xin chao Admin.\n");
         return 1; // Dung
@@ -838,7 +864,7 @@ int main() {
             case 4: featureCheckTicketStatus(); break; // Kiem tra ve xe
             case 5: featureDisplayTripsPaginated(); break; // Su dung ham phan trang moi
             case 6: featurePayTicket(); break; // Thanh Toan ve xe
-            case 7: printf("Tinh nang dang thu nghiem");
+            case 7: printf("Tinh nang dang thu nghiem\n"); break; // [FIX] Them break
             case 8: featureRevenueReport(); break; // Thong ke va doanh thu
             case 0: printf("\n\tDang thoat... Tam biet!\n"); break;
             default: printf("\n\tNhap sai! Nhap lai 0-8.\n");
