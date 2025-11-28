@@ -706,8 +706,8 @@ void featurePayTicket() { // THANH TOAN vé
 
 // Case 8: Bao cao doanh thu & Thong ke
 void featureRevenueReport() { // BAO CAO TINH NAG VA THONG KE
-    // [BAO VE] Chi Admin moi duoc vao
-    if (checkAdminPermission() == 0) return;
+
+    if (checkAdminPermission() == 0) return; // [BAO VE] Chi Admin moi duoc vao
 
     printf("\n=== BAO CAO DOANH THU & THONG KE ===\n");
 
@@ -831,7 +831,7 @@ int main() {
     srand(time(NULL));
 
     // Ham Tu dong tao du lieu mau (15 chuyen xe, 10 ve)
-    initDemoData();
+    //initDemoData();
 
     int choice;
     char buffer[50];
@@ -864,7 +864,7 @@ int main() {
             case 4: featureCheckTicketStatus(); break; // Kiem tra ve xe
             case 5: featureDisplayTripsPaginated(); break; // Su dung ham phan trang moi
             case 6: featurePayTicket(); break; // Thanh Toan ve xe
-            case 7: printf("Tinh nang dang thu nghiem\n"); break; // [FIX] Them break
+            case 7: printf("Tinh nang dang thu nghiem\n"); break; 
             case 8: featureRevenueReport(); break; // Thong ke va doanh thu
             case 0: printf("\n\tDang thoat... Tam biet!\n"); break;
             default: printf("\n\tNhap sai! Nhap lai 0-8.\n");
