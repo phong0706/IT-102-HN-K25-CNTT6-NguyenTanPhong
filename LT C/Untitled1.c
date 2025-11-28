@@ -371,8 +371,7 @@ void initDemoData() {
         tripList[i] = t;
     }
     currentTripCount = 15;
-
-    // 2. Tao 10 ve (3 ten dau theo yeu cau)
+    
     const char* fixedNames[] = {"Tan Phong", "Lam Duong", "Khanh Linh"};
     const char* lastNames[] = {"Nguyen", "Tran", "Le", "Pham"};
     const char* firstNames[] = {"Hung", "Dung", "Hoa", "Mai", "Lan"};
@@ -864,7 +863,7 @@ int main() {
             case 4: featureCheckTicketStatus(); break; // Kiem tra ve xe
             case 5: featureDisplayTripsPaginated(); break; // Su dung ham phan trang moi
             case 6: featurePayTicket(); break; // Thanh Toan ve xe
-            case 7: printf("Tinh nang dang thu nghiem\n"); break; 
+            case 7: printf("Tinh nang dang thu nghiem\n"); break;
             case 8: featureRevenueReport(); break; // Thong ke va doanh thu
             case 0: printf("\n\tDang thoat... Tam biet!\n"); break;
             default: printf("\n\tNhap sai! Nhap lai 0-8.\n");
